@@ -1,0 +1,9 @@
+hcred/
+src/build/
+src/dist/
+src/*.egg-info
+src/prediction_model/datasets/train_*
+__pycache__/
+.pytest_cache
+.tox
+.vscode/
