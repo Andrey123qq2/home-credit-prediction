@@ -35,7 +35,7 @@ steps:
   - --filename=k8s/
   - --image=gcr.io/$PROJECT_ID/hcred-app:latest
   - --location=europe-west1-d
-  - --cluster=mlkube
+  - --cluster=gke-hcred-app
 
 options:
   logging: CLOUD_LOGGING_ONLY
