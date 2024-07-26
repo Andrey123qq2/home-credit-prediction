@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loan-prediction
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hcred-app
+  template:
+    metadata:
+      labels:
+        app: hcred-app
+    spec:
+      containers:
+      - name: loan-prediction-app
+        image: gcr.io/mlops-hcred/hcred-app:latest
+        ports:
+        - containerPort: 8000

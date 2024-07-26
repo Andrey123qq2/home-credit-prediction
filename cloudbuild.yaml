@@ -1,0 +1,38 @@
+steps:
+# Run test
+- name: 'python:3.10-slim'
+  id: Test
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - 'python -m pip install tox && tox'
+
+# Build the image
+- name: 'gcr.io/cloud-builders/docker'
+  id: Build
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/hcred-app:latest', '.']
+  timeout: 200s
+
+# Push the image
+- name: 'gcr.io/cloud-builders/docker'
+  id: Push
+  args: ['push', 'gcr.io/$PROJECT_ID/hcred-app:latest']
+
+- name: 'gcr.io/cloud-builders/gcloud'
+  id: Bash
+  entrypoint: /bin/sh
+  args:
+  - -c
+  - |
+    echo "List of files and directories within the current working directory"
+    ls -l
+
+# Deploy container image to GKE
+- name: "gcr.io/cloud-builders/gke-deploy"
+  id: Deploy on GKE
+  args:
+  - run
+  - --filename=k8s/
+  - --image=gcr.io/$PROJECT_ID/hcred-app:latest
+  - --location=europe-west1-d
+  - --cluster=mlkube
