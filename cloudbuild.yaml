@@ -36,3 +36,6 @@ steps:
   - --image=gcr.io/$PROJECT_ID/hcred-app:latest
   - --location=europe-west1-d
   - --cluster=mlkube
+
+options:
+  logging: CLOUD_LOGGING_ONLY
