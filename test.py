@@ -6,7 +6,7 @@ client = TestClient(app)
 def test_read_main():
     response = client.get("/")
     assert response.status_code == 200
-    assert response.json() == {'message': 'Loan Prediction App'}
+    assert response.json() == {'message': 'Loan Default Prediction App'}
 
 # In browser use null instead of None, True/False -> true/false
 data = {

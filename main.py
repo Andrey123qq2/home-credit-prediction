@@ -10,7 +10,7 @@ from prediction_model.predict import make_prediction
 from prediction_model.processing.data_management import load_pipeline
 
 app = FastAPI(
-	title="Loan Default Prediction Model API",
+	title="Loan Default Prediction App",
     description="A simple API that use ML model to predict the Loan application status",
     version="0.1",
 	)
